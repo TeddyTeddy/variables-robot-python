@@ -1,0 +1,1 @@
+robot -L debug -N "Different Variable Types Are Passed Between Python and Robot And Vice Versa" -d Results/  Tests/
