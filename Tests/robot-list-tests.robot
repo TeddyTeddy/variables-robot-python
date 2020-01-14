@@ -30,6 +30,7 @@ Library        Utils.py
     [Documentation]     Compare this very test case with (Test 1). In this very test, we use '$' sign
     ...                 in front of ${l}, which passes the list itself to the keyword (i.e. not the list items)
     @{l} =  Create List   ${1}  ${1}    ${1}
+    @{expected} =   Create List  ${2}     ${2}     ${2}
     (Keyword 2) Call Python To Duplicate The Items  ${l}   # note that we dont use any return value from the keyword
-    Log     ${l}
+    Should Be Equal     ${l}    ${expected}
 
