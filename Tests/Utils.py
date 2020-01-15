@@ -2,6 +2,27 @@
 from robot.api.deco import keyword
 from robot.api import logger
 
+
+@keyword
+def get_boolean():
+    return True
+
+
+@keyword
+def does_not_flip_in_robot(b):
+    # print(b)   # True
+    # Scope Rule #3:   Name assignments will create or change local names by default.
+    b = not b  # due to the assignment, name 'b' now points at another boolean object
+    # print(b)   # False, does flip in python
+
+@keyword
+def do_flip_in_robot(b):
+    # print(b)   # True
+    # Scope Rule #3:   Name assignments will create or change local names by default.
+    b = not b  # due to the assignment, name 'b' now points at another boolean object
+    # print(b)   # False, does flip in python
+    return b
+
 @keyword
 def get_string():
     return 'PYTHON'
