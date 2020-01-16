@@ -2,6 +2,7 @@
 Documentation    Suite description
 Documentation  Passing a dictionary object from Robot to Python and vice versa
 Library        Utils.py
+Variables      Utils.py
 
 # To run:
 # robot -L debug -d Results/  Tests/robot-dictionary-tests.robot
@@ -9,6 +10,7 @@ Library        Utils.py
 *** Variables ***
 &{D} =          key=original
 &{EXPECTED} =   key=modified
+&{DICTIONARY} =         key1=value1     key2=value2     key3=value3
 
 *** Keywords ***
 (Keyword 1) Call Python To Modify The Dictionary
@@ -27,6 +29,18 @@ Library        Utils.py
     modify dictionary   ${named}
     Log     ${named}
 
+Take In A Dictionary
+    [Arguments]  ${dictionary}
+    FOR   ${key}  IN   @{dictionary}
+        Log Many    ${key}      ${dictionary}[${key}]
+    END
+
+Take In A Variable Number Of Dictionaries
+    [Arguments]  @{varargs}
+    FOR   ${dict}  IN  @{varargs}
+        Take In A Dictionary    ${dict}
+    END
+
 *** Test Cases ***
 (Test 1) Modifying Robot Dictionary in Python
     [Documentation]     Compare this very test case with (Test 2). This very test case should fail as expected
@@ -40,3 +54,6 @@ Library        Utils.py
     ...                 at the same dictionary
     (Keyword 2) Call Python To Modify The Dictionary    ${D}
     Should Be Equal   ${D}      ${EXPECTED}
+
+(Test 3) Passing Multiple Dictionaries To A Keyword
+    Take In A Variable Number Of Dictionaries   ${DICTIONARY}   ${python_dictionary}

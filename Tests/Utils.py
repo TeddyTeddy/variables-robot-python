@@ -537,28 +537,7 @@ def modify_dictionary(d):
     logger.debug(f'after modification, d: {d}')
 
 
-@keyword
-def utility_function_one(*args, **kwargs):
-    part_1 = 'positional args: ' + str(args)
-    part_2 = ' keyworded args: ' + str(kwargs)
-    return part_1 + part_2
-
-
-class Util(object):
-    def __init__(self):
-        self.variable = 'value'
-
-    def method(self, *args, **kwargs):
-        part_1 = 'positional args: ' + str(args)
-        part_2 = ' key worded args: ' + str(kwargs)
-        return part_1 + part_2
-
-    def __str__(self):
-        return 'I am Util object from Python side'
-
-
 if __name__ == 'Utils':   # if the module is imported by Robot
-    utility_object = Util()
     python_list = [1, 2, 3]
     python_dictionary = {'keyA': 'a', 'keyB': 'b', 'keyC': 'c'}
 
